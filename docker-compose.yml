@@ -1,0 +1,11 @@
+---
+
+version: '3'
+services:
+  price-collector:
+    image: price-collector
+    build: ./
+    container_name: price-collector
+    working_dir: /go/src/github.com/hayatochiri/price-collector
+    volumes:
+      - .:/go/src/github.com/hayatochiri/price-collector
