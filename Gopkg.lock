@@ -2,26 +2,57 @@
 
 
 [[projects]]
+  digest = "1:0deddd908b6b4b768cfc272c16ee61e7088a60f7fe2f06c547bd3d8e1f8b8e77"
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  pruneopts = ""
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
   branch = "master"
+  digest = "1:99030889c552fff37a081fcfc5bb8b7050cefd80a38bb601aabcf42de30c7be3"
   name = "github.com/hayatochiri/pit-organ"
   packages = ["."]
+  pruneopts = ""
   revision = "c777385f52d47bfee4a408fc685b9288b8d7db63"
 
 [[projects]]
+  digest = "1:7df5a9695a743c3e1626b28bb8741602c8c15527e1efaeaec48ab2ff9a23f74c"
+  name = "github.com/joho/godotenv"
+  packages = ["."]
+  pruneopts = ""
+  revision = "23d116af351c84513e1946b527c88823e476be13"
+  version = "v1.3.0"
+
+[[projects]]
+  digest = "1:8bbdb2b3dce59271877770d6fe7dcbb8362438fa7d2e1e1f688e4bf2aac72706"
   name = "github.com/mattn/go-sqlite3"
   packages = ["."]
+  pruneopts = ""
   revision = "c7c4067b79cc51e6dfdcef5c702e74b1e0fa7c75"
   version = "v1.10.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:b9ee2219937f857be2595fdc187d84f0f1e3e1b396a6e81a8211e21d14545a7d"
   name = "golang.org/x/xerrors"
-  packages = [".","internal"]
+  packages = [
+    ".",
+    "internal",
+  ]
+  pruneopts = ""
   revision = "385005612d73f6925de56cb1886917aeaf90e3c5"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "eb4e3116bff02bda72ef5435dfbfc0f2b4a5ffdd7edcf156f00f49bf59e1c18f"
+  input-imports = [
+    "github.com/davecgh/go-spew/spew",
+    "github.com/hayatochiri/pit-organ",
+    "github.com/joho/godotenv",
+    "github.com/mattn/go-sqlite3",
+    "golang.org/x/xerrors",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
