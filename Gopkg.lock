@@ -2,22 +2,6 @@
 
 
 [[projects]]
-  digest = "1:0deddd908b6b4b768cfc272c16ee61e7088a60f7fe2f06c547bd3d8e1f8b8e77"
-  name = "github.com/davecgh/go-spew"
-  packages = ["spew"]
-  pruneopts = ""
-  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
-  version = "v1.1.1"
-
-[[projects]]
-  branch = "master"
-  digest = "1:99030889c552fff37a081fcfc5bb8b7050cefd80a38bb601aabcf42de30c7be3"
-  name = "github.com/hayatochiri/pit-organ"
-  packages = ["."]
-  pruneopts = ""
-  revision = "c777385f52d47bfee4a408fc685b9288b8d7db63"
-
-[[projects]]
   digest = "1:7df5a9695a743c3e1626b28bb8741602c8c15527e1efaeaec48ab2ff9a23f74c"
   name = "github.com/joho/godotenv"
   packages = ["."]
@@ -48,8 +32,6 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/davecgh/go-spew/spew",
-    "github.com/hayatochiri/pit-organ",
     "github.com/joho/godotenv",
     "github.com/mattn/go-sqlite3",
     "golang.org/x/xerrors",

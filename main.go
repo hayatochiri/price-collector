@@ -117,6 +117,7 @@ func main() {
 	}
 
 	case1()
+	case2()
 
 	fmt.Print("Done")
 }
@@ -149,7 +150,12 @@ func case1() {
 		panic(xerrors.Errorf("Create books table failed: %w", err))
 	}
 
-	for i := 0; i < 100; i++ {
+	_, err = db.Exec(`BEGIN`)
+	if err != nil {
+		panic(xerrors.Errorf("Create books table failed: %w", err))
+	}
+
+	for i := 1557428809; i < 1557428809+10000; i++ {
 		_, err = db.Exec(`
 			INSERT INTO PRICE(UNIX_TIME, INSTRUMENT_ID, TRADEABLE, BID    , ASK    , CLOSEOUT_BID, CLOSEOUT_ASK)
 			           VALUES(?        , 0            , TRUE     , 109.716, 109.758, 109.716     , 109.758     );
@@ -157,5 +163,61 @@ func case1() {
 		if err != nil {
 			log.Fatalf("%+v", xerrors.Errorf("Connection error: %w", err))
 		}
+	}
+
+	_, err = db.Exec(`COMMIT`)
+	if err != nil {
+		panic(xerrors.Errorf("Create books table failed: %w", err))
+	}
+}
+
+func case2() {
+	db, err := sql.Open("sqlite3", "./case2.db")
+	if err != nil {
+		panic(xerrors.Errorf("Open SQLite3 DB failed: %w", err))
+	}
+
+	_, err = db.Exec(`
+		CREATE TABLE IF NOT EXISTS "PRICE" (
+			"UNIX_TIME" UNSIGNED BIG INT,
+			"INSTRUMENT_ID" INTEGER,
+			"TRADEABLE" BOOLEAN,
+			"BID" INTEGER,
+			"ASK" INTEGER,
+			"CLOSEOUT_BID" INTEGER,
+			"CLOSEOUT_ASK" INTEGER,
+			PRIMARY KEY("UNIX_TIME", "INSTRUMENT_ID")
+		);
+
+		CREATE TABLE IF NOT EXISTS "INSTRUMENTS" (
+			"INSTRUMENT_ID" INTEGER,
+			"INSTRUMENT" CHARACTER(7),
+			PRIMARY KEY("INSTRUMENT_ID")
+		);
+	`)
+	if err != nil {
+		panic(xerrors.Errorf("Create books table failed: %w", err))
+	}
+
+	_, err = db.Exec(`BEGIN`)
+	if err != nil {
+		panic(xerrors.Errorf("Create books table failed: %w", err))
+	}
+
+	for i := 1557428809; i < 1557428809+10000; i++ {
+		for j := 0; j < 71; j++ {
+			_, err = db.Exec(`
+				INSERT INTO PRICE(UNIX_TIME, INSTRUMENT_ID, TRADEABLE, BID    , ASK    , CLOSEOUT_BID, CLOSEOUT_ASK)
+				           VALUES(?        , ?            , TRUE     , 63, 83, 63     , -83     );
+			`, i, j)
+			if err != nil {
+				log.Fatalf("%+v", xerrors.Errorf("Connection error: %w", err))
+			}
+		}
+	}
+
+	_, err = db.Exec(`COMMIT`)
+	if err != nil {
+		panic(xerrors.Errorf("Create books table failed: %w", err))
 	}
 }
